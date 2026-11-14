@@ -2,12 +2,9 @@
 
 한글/영어 맞춤법 및 문법 교정기 (C++17, 외부 라이브러리 없음)
 
-## 빌드
-    cmake -S . -B build && cmake --build build
-    ./build/spellcorreter_tests        # 테스트
-    ./build/spellcorreter              # 입력창이 열리고, 문장/문단 입력 후 Enter 하면 자동 교정
-
-CMake 없이:  g++ -std=c++17 -Iinclude src/*.cpp app/main.cpp -o spellcorreter
+[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C.svg?logo=cplusplus)](https://isocpp.org/)
+[![Python](https://img.shields.io/badge/Python-3.8-3776AB.svg?logo=python)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## 구조 (데이터 흐름)
     입력 → Document(토큰/문장시작) → [IChecker ...] → IssueResolver → TextCorrector → ReportPrinter
@@ -20,11 +17,6 @@ CMake 없이:  g++ -std=c++17 -Iinclude src/*.cpp app/main.cpp -o spellcorreter
 | 한국어 | KoreanRuleTable, KoreanRuleChecker, KoreanEndingChecker, KoreanSpacingChecker, KoreanParticleChecker |
 | 후처리 | IssueResolver, TextCorrector, ReportPrinter |
 | 조립/진입 | SpellCorreter, Cli, InteractiveSession, app/main.cpp |
-
-## 디버깅
-    ./spellcorreter --debug "I recieve a apple"
-토큰 분석, 검사기별 이슈, 충돌로 버려진 이슈, 이슈를 낸 검사기 이름을 보여 줍니다.
-새 규칙은 IChecker를 상속해 `SpellCorreter::addChecker()`로 추가하세요.
 
 ## 영어 사전
 `dict/en_words.txt`(hunspell en_US를 펼친 약 12.8만 단어, 형식 `단어 점수`)가 기본 포함되어 있고,
